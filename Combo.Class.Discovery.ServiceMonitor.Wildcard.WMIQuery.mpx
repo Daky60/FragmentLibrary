@@ -73,7 +73,7 @@ This fragment depends on references:
                       </ValueExpression>
                       <Operator>Equal</Operator>
                       <ValueExpression>
-                        <Value Type="Integer">4</Value> <!-- 0=BootStart 1=SystemStart 2=Automatic 3=Manual 4=Disabled -->
+                        <Value Type="Integer">2</Value> <!-- 0=BootStart 1=SystemStart 2=Automatic 3=Manual 4=Disabled -->
                       </ValueExpression>
                     </SimpleExpression>
                   </Expression>
@@ -99,9 +99,9 @@ This fragment depends on references:
                       <ValueExpression>
                         <XPathQuery Type="Integer">Property[@Name='StartMode']</XPathQuery>
                       </ValueExpression>
-                      <Operator>NotEqual</Operator>
+                      <Operator>Equal</Operator>
                       <ValueExpression>
-                        <Value Type="Integer">4</Value> <!-- 0=BootStart 1=SystemStart 2=Automatic 3=Manual 4=Disabled -->
+                        <Value Type="Integer">2</Value> <!-- 0=BootStart 1=SystemStart 2=Automatic 3=Manual 4=Disabled -->
                       </ValueExpression>
                     </SimpleExpression>
                   </Expression>
@@ -164,7 +164,7 @@ This fragment depends on references:
         </DiscoveryTypes>
         <DataSource ID="DS" TypeID="Windows!Microsoft.Windows.WmiProviderWithClassSnapshotDataMapper">
           <NameSpace>root\cimv2</NameSpace>
-          <Query><![CDATA[SELECT * FROM Win32_Service WHERE Name LIKE '##ServiceNameWildcard##']]></Query>
+          <Query><![CDATA[SELECT * FROM Win32_Service WHERE Name LIKE '##ServiceNameWildcard##' AND StartMode = 'Auto']]></Query>
           <Frequency>86397</Frequency>  <!-- seconds -->
           <ClassId>$MPElement[Name="##CompanyID##.##AppName##.##UniqueID##.Class"]$</ClassId>
           <InstanceSettings>
